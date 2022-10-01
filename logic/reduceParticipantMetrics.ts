@@ -6,7 +6,7 @@ function pluckMetricValue(metrics:IParticipantMetric[], code:string):number {
 }
 
 export function reduceParticipantMetrics (metrics: IParticipantMetric[]) {
-    console.log(metrics);
+
     const draftMetrics = {
             defeats: pluckMetricValue(metrics, "defeits"),
             draws: pluckMetricValue(metrics, "draws"),

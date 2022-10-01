@@ -33,14 +33,14 @@ export default function Home({ data }: PageProps) {
   const {name: tournamentName, standings} = data.tournamentStage;
 
   return (
-    <main>
+    <main class="main">
         <Head>
             <title>{tournamentName}</title>
             <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>"></link>
+            <link rel="stylesheet" href="/table.css" />
         </Head>
-        <link rel="stylesheet" href="/table.css" />
         <header><h1>{tournamentName}</h1></header>
-        <table class="table main">
+        <table class="table">
             <TableHead locale={locale} />
             <tbody>
                 {standings.map(

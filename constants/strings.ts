@@ -1,7 +1,7 @@
 
 type supportedLanguages = "no" | "en";
 interface IStringsCollection {
-    error: { generic: string; }
+    error: { generic: string; nameMissing: string;}
     table: any;   // TODO #3 - improve typing for table and participant strings
     participant: any;
 }
@@ -13,10 +13,11 @@ export const strings : IStrings = {
     no: {
         error: {
             generic: "Beklager! Det oppstod en feil",
+            nameMissing: "Navn mangler",
         },
         table: {
             header: {
-                teamName: "Lagnavn",
+                teamName: "Lag",
                 rank: "Rang",
                 matches: {
                     name: "Kamper",
@@ -59,8 +60,27 @@ export const strings : IStrings = {
     en: {
         error: {
             generic: "So terribly sorry. A mishap seems to have occured!",
+            nameMissing: "Name is missing",
         },
-        table: {},
+        table: {
+            header: {
+                teamName: "Team",
+                rank: "Ranking",
+                matches: {
+                    name: "Matches",
+                    played: "Played",
+                    won: "Wins",
+                    draws: "Draws",
+                    lost: "Concessions",
+                },
+                goals: {
+                    name: "Goals",
+                    scored: "Scored",
+                    conceded: "Against",
+                },
+                points: "Points",
+            },
+        },
         participant: {
             response: {
                 winsaway:"Victories away",

@@ -1,13 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;700&display=swap'); /* TODO: host fonts locally*/
+
+:root {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 300;
+}
+
+.main {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
 .table {
-    background-color: aqua;
+    --table-background-color: lightgray;
+    --table-alternate-row-color: white;
+    background-color: var(--table-background-color);
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.table.main .table-head {
-    background-color: aliceblue;
+.table-head th, 
+.table-head td {
+    padding: 4px 1vw;
+    font-size: clamp(16px, 2.6vw, 24px);
 }
 
-.table.main .table-head th, .table.main .table-head td {
-    background-color: aliceblue;
-    padding: 8px 24px;
-    font-size: 24px;
+.table-head-first-row .team-name {
+    text-align: left;
 }
+
+.table-head-second-row .small-only {
+    display: block;
+    text-align: center;
+}
+
+
+.participant-row:nth-child(odd) {
+    background-color: var(--table-alternate-row-color);
+}
+
+.participant-row th,
+.participant-row td {
+    padding: 4px;
+}
+
+.participant-row th {
+    text-align: left;
+}
+
+.participant-row td {
+    text-align: center;
+}
+
+
+/* Desktop-tilpasninger*/
+.large-only {
+    display: none;
+}
+
+@media screen and (min-width: 1080px) {
+    .table .table-head-second-row span.small-only {
+        display: none;
+    }
+
+    span.large-only {
+        display: initial;
+    }
+};

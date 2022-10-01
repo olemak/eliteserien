@@ -1,3 +1,4 @@
+import { strings } from "../constants/strings.ts";
 import { reduceParticipantMetrics } from "../logic/reduceParticipantMetrics.ts";
 
 export enum participantMetricCodesEnum {
@@ -18,13 +19,14 @@ interface IParticipantProps {
 }
 
 export default function Participant({ data }: IParticipantProps) {
+    const locale = "no";  // TODO get from signal
     const { name, data: metrics } = data;
     const {name: participantName} = name;
     const reducedMetrics = reduceParticipantMetrics(metrics);
 
   return (
-    <tr>
-      <td>{ participantName ?? "team name missing"}</td>
+    <tr scope="row" class="participant-row">
+      <th>{ participantName ?? strings[locale].error.nameMissing}</th>
       <td>{reducedMetrics.rank}</td>
       <td>{reducedMetrics.played}</td>
       <td>{reducedMetrics.wins}</td>
