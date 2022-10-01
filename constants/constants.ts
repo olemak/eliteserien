@@ -1,3 +1,2 @@
 export const apiRoot = "https://resultatservice-api.stage-sumo.tv2.no/api/graphql";
 export const defaultTournamentStageId = "4e50ba57-d5fe-4370-b2f8-e357ebeb4c83";
-export const teamMetricKeys = ["rank", "points", "goalsfor", "goalsagainst", "winshome", "winsaway", "draws", "played", "wins", "defeits", "playedhome", "playedaway", "drawshome", "drawsaway", "defeitshome", "defeitsaway", "goalsforhome", "goalsforaway", "goalsagainsthome", "goalsagainstaway", "pointshome", "pointsaway", "trend"];

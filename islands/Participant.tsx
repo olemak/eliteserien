@@ -1,32 +1,38 @@
-export default function Participant (props: any) {
-    
-  const {data} = props;
-  /*
-  const {value: rank} = data[0];
-  const {value: played} = data[1];
-  const {value: won} = data[2];
-  const {value: drawn} = data[3];
-  const {value: lost} = data[4];
-  const {value: scored} = data[5];
-  const {value: conceded} = data[6];
-  const {value: points} = data[7];
-  */
+import { reduceParticipantMetrics } from "../logic/reduceParticipantMetrics.ts";
 
- 
+export enum participantMetricCodesEnum {
+    "rank", "points", "goalsfor", "goalsagainst", "winshome", "winsaway", "draws", "played", "wins", "defeits", "playedhome", "playedaway", "drawshome", "drawsaway", "defeitshome", "defeitsaway", "goalsforhome", "goalsforaway", "goalsagainsthome", "goalsagainstaway", "pointshome", "pointsaway", "trend"
+}
+
+export interface IParticipantMetric {
+    code: participantMetricCodesEnum | string;
+    value: string;
+}
+interface IParticipantData {
+    name: {name: string}
+    data: IParticipantMetric[];
+}
+
+interface IParticipantProps {
+    data: IParticipantData;
+}
+
+export default function Participant({ data }: IParticipantProps) {
+    const { name, data: metrics } = data;
+    const {name: participantName} = name;
+    const reducedMetrics = reduceParticipantMetrics(metrics);
 
   return (
     <tr>
-      <td>{data.name.name ?? "name"}</td>
-      {/*
-      <td>{rank}</td>
-      <td>{played}</td>
-      <td>{won}</td>
-      <td>{drawn}</td>
-      <td>{lost}</td>
-      <td>{scored}</td>
-      <td>{conceded}</td>
-      <td>{points}</td>
-      */}
+      <td>{ participantName ?? "team name missing"}</td>
+      <td>{reducedMetrics.rank}</td>
+      <td>{reducedMetrics.played}</td>
+      <td>{reducedMetrics.wins}</td>
+      <td>{reducedMetrics.draws}</td>
+      <td>{reducedMetrics.defeats}</td>
+      <td>{reducedMetrics.goalsfor}</td>
+      <td>{reducedMetrics.goalsagainst}</td>
+      <td>{reducedMetrics.points}</td>
     </tr>
   ); 
 }
