@@ -1,0 +1,13 @@
+.table {
+    background-color: aqua;
+}
+
+.table.main .table-head {
+    background-color: aliceblue;
+}
+
+.table.main .table-head th, .table.main .table-head td {
+    background-color: aliceblue;
+    padding: 8px 24px;
+    font-size: 24px;
+}
