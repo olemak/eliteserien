@@ -105,11 +105,68 @@ body {
     color: white;
 }
 
+.participant-row {
+    position: relative;
+}
+
+.participant-row:nth-last-child(-n+3) th::before {
+    display: block;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+}
+.participant-row:nth-last-child(-n+2) th::before {
+    background-color: red;
+}
+.participant-row:nth-last-child(3) th::before {
+    background-color: orange;
+
+}
+
+.table-footer {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    font-size: 20px;
+}
+
+.table-footer__relegation,
+.table-footer__relegationQualification {
+    margin: 20px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.table-footer__relegation::before,
+.table-footer__relegationQualification::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin-right: 10px;
+}
+
+.table-footer__relegation::before {
+    background-color: red;
+}
+.table-footer__relegationQualification::before {
+    background-color: orange;
+}
+
+
+
 /* Tilpasning for små skjermer */
 @media screen and (max-width: 500px) {
     /* remove table head */
     .table-head {
         display: none;
+    }
+
+    .table-footer {
+        flex-direction: column;
     }
 
     /* COLLAPSE FOR SMALL SCREENS */

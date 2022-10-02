@@ -34,6 +34,10 @@ export const strings : IStrings = {
                 },
                 points: "Poeng",
             },
+            footer: {
+                relegation: "Nedrykk",
+                relegationQualification: "Nedrykkskvalifisert",
+            }
         },
         match: {
             singular: "Kamp",
@@ -82,6 +86,10 @@ export const strings : IStrings = {
                 },
                 points: "Points",
             },
+            footer: {
+                relegation: "Relegated",
+                relegationQualification: "Relegation qualification",
+            }
         },
         match: {
             singular: "Match",
