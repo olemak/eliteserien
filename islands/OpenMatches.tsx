@@ -4,10 +4,11 @@ interface IOpenMatchesProps {
     participantName: string;
     participantId: string;
     from: string;
+    logoUrl: string;
     to: string;
 }
 
-export default function OpenMatches({participantName, participantId, from, to}: IOpenMatchesProps) {
+export default function OpenMatches({participantName, participantId, from, to, logoUrl}: IOpenMatchesProps) {
     const href = `/matches/${participantId}?startDate=${from}&endDate=${to}`;
     const openMatches = (event: Event) => {
         event.preventDefault();
@@ -40,6 +41,9 @@ export default function OpenMatches({participantName, participantId, from, to}: 
 
     return (
         <a href={href} onClick={openMatches} class="participant-row_open-link">
+            <div class="participant_logo_wrapper">
+                <img src={logoUrl} alt={participantName} class="participant_logo" />
+            </div>
             { participantName }
         </a>
     )

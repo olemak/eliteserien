@@ -9,6 +9,7 @@ export const getTables = `query table($tournamentStageId: ID!) {
           name: participant {
             name
             id
+            images {url}
           }
           data {
             code

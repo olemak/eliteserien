@@ -15,6 +15,7 @@ interface IParticipantData {
     name: {
         name: string,
         id: string;
+        images: {url: string;}[]
     }
     data: IParticipantMetric[];
 }
@@ -30,8 +31,10 @@ export default function Participant({ data, endDate, startDate }: IParticipantPr
     const locale = "no";  // TODO get from theme?
     const { labels } = strings[locale].participant;
     const { name, data: metrics } = data;
-    const { name: participantName, id} = name;
+    const { name: participantName, id, images } = name;
+    const logoUrl = images[0].url;
     const reducedMetrics = reduceParticipantMetrics(metrics);
+
 
     return (
             <tr
@@ -41,6 +44,7 @@ export default function Participant({ data, endDate, startDate }: IParticipantPr
                         participantName={participantName} 
                         participantId={id}
                         from={startDate}
+                        logoUrl={logoUrl}
                         to={endDate}/>
                 </th>
                 <td data-label={labels.rank}>{ reducedMetrics.rank }</td>

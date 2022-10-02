@@ -80,9 +80,29 @@ body {
     color: white;
     transition: all 0.2s ease-in-out;
 }
+.participant-row_open-link {
+    color: black;
+    font-weight: 300;
+    font-size: 20px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.participant_logo_wrapper {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.participant_logo {
+    width: 100px;
+    max-height: 40px;
+    width: auto;
+    margin-right: 20px;
+}
 
 .participant-row:hover .participant-row_open-link {
-    color: lightblue;
+    color: white;
 }
 
 /* Tilpasning for små skjermer */
