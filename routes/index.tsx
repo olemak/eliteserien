@@ -3,11 +3,9 @@ import { apiRoot, defaultTournamentStageId } from "../constants/constants.ts";
 import { getTables } from "../queries/getTables.ts";
 import { strings } from "../constants/strings.ts";
 
-import { TableHead } from "../components/TableHead.tsx";
 import { Head } from "https://deno.land/x/fresh@1.1.1/src/runtime/head.ts";
-import { TableBody } from "../components/TableBody.tsx";
-
-// TODO: move the handler and the whole table to a component, cleaning up the index
+import { TournamentTable } from "../components/TournamentTable.tsx";
+import { Fav } from "../components/FavIcon.tsx";
 
 export const handler:Handlers = {
     async GET(_, ctx) {
@@ -33,24 +31,12 @@ export default function Home({ data }: PageProps) {
     return <div>{strings[locale].error.generic}</div>;
   }
 
-  const {name: tournamentName, id: tournamentStageId, standings, startDate, endDate} = data.tournamentStage;
-  const tournamentDate = new Date(startDate);
-
   return (
     <main class="main">
         <Head>
-            <title>{tournamentName}</title>
-            <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>"></link>
-            <link rel="stylesheet" href="/table.css" />
+            <Fav icon="⚽" />
         </Head>
-        <table class="table">
-            <caption><h1>{`${tournamentName} ${tournamentDate.getFullYear()}`}</h1></caption>
-            <TableHead locale={locale} />
-            <TableBody standings={standings}
-                startDate={startDate} 
-                endDate={endDate} 
-                tournamentStageId={tournamentStageId}/>
-        </table>
+        <TournamentTable data={data} />
     </main>
   );
 }
