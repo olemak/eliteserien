@@ -3,6 +3,7 @@ import { apiRoot, defaultTournamentStageId } from "../constants/constants.ts";
 import Participant from "../islands/Participant.tsx";
 import { getTables } from "../queries/getTables.ts";
 import { strings } from "../constants/strings.ts";
+
 import { TableHead } from "../components/TableHead.tsx";
 import { Head } from "https://deno.land/x/fresh@1.1.1/src/runtime/head.ts";
 
@@ -26,11 +27,12 @@ export const handler:Handlers = {
 export default function Home({ data }: PageProps) {
   const locale = "no"; // TODO #1 opportunity: get locale from request
 
+
   if (!data) {
     return <div>{strings[locale].error.generic}</div>;
   }
- 
-  const {name: tournamentName, standings} = data.tournamentStage;
+
+  const {name: tournamentName, standings, startDate, endDate} = data.tournamentStage;
 
   return (
     <main class="main">
@@ -46,7 +48,7 @@ export default function Home({ data }: PageProps) {
                 {standings.map(
                     (standing: any) => standing
                         .participants
-                        .map((participantData: any) => <Participant data={participantData}/>)
+                        .map((participantData: any) => <Participant data={participantData} id={data.id} startDate={startDate} endDate={endDate} />)
                 )}
             </tbody>
         </table>
