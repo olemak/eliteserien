@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;700&display=swap'); /* TODO: host fonts locally*/
-@import './modal.css';
-
-:root {
-    font-family: 'Comfortaa', cursive;
-    font-weight: 300;
+html {
+    width:100vw;
+    overflow-x: hidden;
+    scrollbar-gutter: stable both-edges;
 }
 
 .main {
     max-width: 1080px;
     margin: 0 auto;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 300;
 }
 
 .table {
@@ -28,12 +28,30 @@
 .table-head-first-row .team-name {
     text-align: left;
 }
+.table-head-first-row .matches,
+.table-head-first-row .goals { 
+    position: relative;
+}
+
+.table-head-first-row .matches:after,
+.table-head-first-row .goals::after {
+    content: "";
+    display: block;
+    background-color: darkgray;
+    position: absolute;
+    bottom: 0;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    
+}
 
 .table-head-second-row .small-only {
     display: block;
     text-align: center;
 }
 
+/* Participant Table Rows*/
 
 .participant-row:nth-child(odd) {
     background-color: var(--table-alternate-row-color);
@@ -52,6 +70,39 @@
     text-align: center;
 }
 
+/* Tilpasning for små skjermer */
+@media screen and (max-width: 500px) {
+    /* remove table head */
+    .table-head {
+        display: none;
+    }
+
+    /* COLLAPSE FOR SMALL SCREENS */
+    .participant-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 12px 4px;
+    }
+    .participant-row th {
+        display: flex;
+        flex: 1 0 100%;
+    }
+    .participant-row td {
+        display: flex;
+        flex: 1 1 40%;
+    }
+
+    .participant-row td::before {
+        content: attr(data-label);
+        display: block;
+        min-width: 140px;
+        min-height: 20px;
+        text-align: left;
+    }
+}
+
 
 /* Desktop-tilpasninger*/
 .large-only {
@@ -66,4 +117,35 @@
     span.large-only {
         display: initial;
     }
-};
+}
+
+/* MODAL */
+.modal {
+    background-color: rgba(0,0,0,0.6);
+    position: fixed;
+    inset: 0;
+    display: none;
+}
+
+.modal--open {
+    display: block;
+}
+
+.modal .close-icon {
+    font-style: normal;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 50px;
+    color: white;
+    cursor: pointer;
+}
+
+.modal-inner {
+    background-color: white;
+    max-width: 80vw;
+    margin: 20px auto;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 12px;
+}

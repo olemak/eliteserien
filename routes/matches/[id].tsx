@@ -1,4 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
+import { Head } from "https://deno.land/x/fresh@1.1.1/src/runtime/head.ts";
+import { Fav } from "../../components/FavIcon.tsx";
 import { apiRoot } from "../../constants/constants.ts";
 import { strings } from "../../constants/strings.ts";
 import { getMatches } from "../../queries/getMatches.ts";
@@ -56,7 +58,14 @@ export default function Matches(props: PageProps) {
 
     return (
     <section id="match-list" class="match-list">
-        <link rel="stylesheet" href="/matches.css" />
+        <Head>
+            <title>olemak | Kamper</title>
+            <link rel="stylesheet" href="/matches.css" />
+            <Fav icon="⚽" />
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+            <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;700&display=swap" rel="stylesheet" />
+        </Head>
         <h2>{heading}</h2>
         {matches.map((match: any) => <Match data={match}/>)}
     </section>

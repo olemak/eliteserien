@@ -46,19 +46,16 @@ export const strings : IStrings = {
                 played:"Spilt",
                 wins:"Seire",
                 defeits:"Tap",
-                playedhome:"Hjemmekamper",                  // unused
-                playedaway:"Bortekamper",                   // unused
-                drawshome:"Uavgjort hjemme",                // unused
-                drawsaway:"Uavgjort borte",                 // unused
-                defeitshome:"Hjemmeseire",                  // unused
-                defeitsaway:"Bortetap",                     // unused
-                goalsforhome:"Mål på hjemmebane",           // unused
-                goalsforaway:"Mål på bortebane",            // unused
-                goalsagainsthome:"Innslipp på hjemmebane",  // unused
-                goalsagainstaway:"Innslipp på bortebane",   // unused
-                pointshome:"Poeng hjemmebane",              // unused
-                pointsaway:"Peng bortebane",                // unused
-                trend:"Trend",                              // unused
+            },
+            labels: {
+                rank: "Rangering",
+                played: "Spilte",
+                wins: "Seire",
+                draws: "Uavgjort",
+                defeats: "Tap",
+                goalsFor: "Scoringer",
+                goalsAgainst: "Mål sluppet inn",
+                points: "poeng"
             }
         }
     },
@@ -97,19 +94,16 @@ export const strings : IStrings = {
                 played:"Played",
                 wins:"Wins",
                 defeats:"Defeats",
-                playedhome:"Played home",                   // unused
-                playedaway:"Played away",                   // unused
-                drawshome:"Draws home",                     // unused
-                drawsaway:"Draws away",                     // unused
-                defeatshome:"Defeats home",                 // unused
-                defeatsaway:"Defeats away",                 // unused
-                goalsforhome:"Goals for home",              // unused
-                goalsforaway:"Goals for away",              // unused
-                goalsagainsthome:"Goals against home",      // unused
-                goalsagainstaway:"Goals against away",      // unused
-                pointshome:"Points home",                   // unused
-                pointsaway:"Points away",                   // unused
-                trend:"Trend",                              // unused
+            },
+            labels: {
+                rank: "Rank",
+                played: "Played",
+                wins: "Wins",
+                draws: "Draws",
+                defeats: "Defeats",
+                goalsFor: "Goals",
+                goalsAgainst: "Goals against",
+                points: "points"
             }
         }
     }

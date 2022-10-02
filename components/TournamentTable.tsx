@@ -1,4 +1,3 @@
-import { Head } from "https://deno.land/x/fresh@1.1.1/src/runtime/head.ts";
 import { TableBody } from "./TableBody.tsx";
 import { TableHead } from "./TableHead.tsx";
 
@@ -13,13 +12,12 @@ export function TournamentTable({data}: ITournamentTableProps){
 
     return (
     <table class="table">
-        <Head>
-            <title>{`olemak | ${tournamentName}`}</title>
-            <link rel="stylesheet" href="/table.css" />
-        </Head>
-        <caption><h1>{`${tournamentName} ${new Date(startDate).getFullYear()}`}</h1></caption>
+        <caption>
+            <h1>{`${tournamentName} ${new Date(startDate).getFullYear()}`}</h1>
+        </caption>
         <TableHead locale={locale} />
-        <TableBody standings={standings}
+        <TableBody 
+            standings={standings}
             startDate={startDate} 
             endDate={endDate} 
             tournamentStageId={tournamentStageId}/>

@@ -1,3 +1,4 @@
+import { strings } from "../constants/strings.ts";
 import OpenMatches from "../islands/OpenMatches.tsx";
 
 import { reduceParticipantMetrics } from "../logic/reduceParticipantMetrics.ts";
@@ -26,31 +27,30 @@ interface IParticipantProps {
 }
 
 export default function Participant({ data, endDate, startDate }: IParticipantProps) {
-    const locale = "no";  // TODO get from signal
+    const locale = "no";  // TODO get from theme?
+    const { labels } = strings[locale].participant;
     const { name, data: metrics } = data;
     const { name: participantName, id} = name;
     const reducedMetrics = reduceParticipantMetrics(metrics);
- 
-
 
     return (
             <tr
                 class="participant-row" >
-                <th  scope="row">
+                <th scope="row">
                     <OpenMatches 
                         participantName={participantName} 
                         participantId={id}
                         from={startDate}
                         to={endDate}/>
                 </th>
-                <td>{ reducedMetrics.rank }</td>
-                <td>{ reducedMetrics.played }</td>
-                <td>{ reducedMetrics.wins }</td>
-                <td>{ reducedMetrics.draws }</td>
-                <td>{ reducedMetrics.defeats }</td>
-                <td>{ reducedMetrics.goalsfor }</td>
-                <td>{ reducedMetrics.goalsagainst }</td>
-                <td>{ reducedMetrics.points }</td>
+                <td data-label={labels.rank}>{ reducedMetrics.rank }</td>
+                <td data-label={labels.played}>{ reducedMetrics.played }</td>
+                <td data-label={labels.wins}>{ reducedMetrics.wins }</td>
+                <td data-label={labels.draws}>{ reducedMetrics.draws }</td>
+                <td data-label={labels.defeats}>{ reducedMetrics.defeats }</td>
+                <td data-label={labels.goalsFor}>{ reducedMetrics.goalsfor }</td>
+                <td data-label={labels.goalsAgainst}>{ reducedMetrics.goalsagainst }</td>
+                <td data-label={labels.points}>{ reducedMetrics.points }</td>
             </tr>
     );
 }

@@ -7,6 +7,7 @@ import { getTables } from "../queries/getTables.ts";
 import { strings } from "../constants/strings.ts";
 import { TournamentTable } from "../components/TournamentTable.tsx";
 import { Fav } from "../components/FavIcon.tsx";
+import { Modal } from "../components/Modal.tsx";
 
 export const handler:Handlers = {
     async GET(_, ctx) {
@@ -35,12 +36,15 @@ export default function Home({ data }: PageProps) {
   return (
     <main class="main">
         <Head>
+            <title>olemak | Eliteserien</title>
+            <link rel="stylesheet" href="/table.css" />
             <Fav icon="⚽" />
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+            <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;700&display=swap" rel="stylesheet" />
         </Head>
         <TournamentTable data={data} />
-        <section id="modal" class="modal">
-            <div id="modal-inner" class="modal-inner" />
-        </section>
+        <Modal />
     </main>
   );
 }
