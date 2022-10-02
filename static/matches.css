@@ -11,7 +11,7 @@
     min-height: 30px;
     display: flex;
     align-items: center;
-    padding: 0 4px;
+    padding: 4px;
 }
 
 .match-participants {
@@ -32,6 +32,6 @@
 }
 
 .match-date {
-    width: 120px;
+    min-width: 120px;
     display: inline-block;
 }

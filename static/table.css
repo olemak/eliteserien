@@ -1,11 +1,17 @@
+@import './matches.css';
+
 html {
-    width:100vw;
-    overflow-x: hidden;
     scrollbar-gutter: stable both-edges;
 }
 
+body {
+    margin: 0;
+}
+
 .main {
+    width: 100%;
     max-width: 1080px;
+    scrollbar-gutter: stable both-edges;
     margin: 0 auto;
     font-family: 'Comfortaa', cursive;
     font-weight: 300;
@@ -52,14 +58,13 @@ html {
 }
 
 /* Participant Table Rows*/
-
 .participant-row:nth-child(odd) {
     background-color: var(--table-alternate-row-color);
 }
 
 .participant-row th,
 .participant-row td {
-    padding: 4px;
+    padding: clamp(4px, 1vw, 8px);
 }
 
 .participant-row th {
@@ -68,6 +73,16 @@ html {
 
 .participant-row td {
     text-align: center;
+}
+
+.table-body .participant-row:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.2s ease-in-out;
+}
+
+.participant-row:hover .participant-row_open-link {
+    color: lightblue;
 }
 
 /* Tilpasning for små skjermer */

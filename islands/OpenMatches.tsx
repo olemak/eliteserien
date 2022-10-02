@@ -18,7 +18,8 @@ export default function OpenMatches({participantName, participantId, from, to}: 
             fetch(href)
                 .then(res => res.text())
                 .then(html => {
-                    modalInner.innerHTML = html;
+                    const trimmedHtml = html.substring(html.indexOf('<body>') + 6, html.indexOf('</body>'));
+                    modalInner.innerHTML = trimmedHtml;
                     modal.ariaModal = "true";
                     modal.classList.add('modal--open');
                     const closeIcon = document.createElement('i');
@@ -38,7 +39,7 @@ export default function OpenMatches({participantName, participantId, from, to}: 
     }
 
     return (
-        <a href={href} onClick={openMatches}>
+        <a href={href} onClick={openMatches} class="participant-row_open-link">
             { participantName }
         </a>
     )
