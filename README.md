@@ -10,10 +10,13 @@ The project is built with Deno Fresh and hosted with Deno Deploy. I chose this s
 * Simple and free hosting
 * A chance to explore Deno and Deno Fresh
 
+## Resilience
+The project is javascript independent, so you can disable javascript in dev tools if you like!
+
 ### Usage
 You can find this project hosted here:
 
-// TODO: DEPLOY AND PASTE URL HERE :)
+[olemak-eliteserien.deno.dev](https://olemak-eliteserien.deno.dev/)
 
 To run locally, you will need **Deno**, a modern successor to Node built on TypeScript.Installation guide can be found here for various environments, as well as a downloadable installer: [Deno](https://deno.land/)
 
