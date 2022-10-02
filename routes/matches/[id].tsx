@@ -1,5 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { apiRoot } from "../../constants/constants.ts";
+import { strings } from "../../constants/strings.ts";
 import { getMatches } from "../../queries/getMatches.ts";
 
 export const handler:Handlers = {
@@ -22,11 +23,15 @@ export const handler:Handlers = {
                     toDate: endDate }})
         })
         .then(res => res.json())
-        .then(res => res.data.eventsByParticipantAndDateRange);
+        .then(res => res.data)
 
-        const matchesInEliteserien = matches.filter((match: any) => match.tournamentStage.name === "Eliteserien"); // Todo improve the query instead
+        // TODO: Improve Graph query instead:
+        const matchesInEliteserien = matches.eventsByParticipantAndDateRange.filter((match: any) => match.tournamentStage.name === "Eliteserien"); 
+        const participantName = matches.participant.name;
 
-        return ctx.render(matchesInEliteserien);
+        return ctx.render({
+            participantName,
+            matches: matchesInEliteserien});
     }
 }
 
@@ -35,20 +40,25 @@ const Match = (props: any) => {
     const {startDate, participants} = data;
     const [homeTeam, awayTeam] = participants;
     const matchDate = new Date(startDate);
-
+    
     return (
-    <div class="match-item">
-        <span class="match-date">{matchDate.toLocaleDateString()}:</span>
+        <div class="match-item">
+        <span class="match-date">{matchDate.toLocaleDateString()}</span>
         <span class="match-participants">{`${homeTeam.participant.name} - ${awayTeam.participant.name}`}</span>
     </div>)
 }
 
 export default function Matches(props: PageProps) {
+    const locale = "no"; // TODO: Get locale from browser
+    const {matches, participantName} = props.data;
+    const {match} = strings[locale];
+    const heading = `${match.plural} ${participantName}`;
 
     return (
-    <section class="match-list">
-        <h2>Matches</h2>
-        {props.data.map((match: any) => <Match data={match}/>)}
+    <section id="match-list" class="match-list">
+        <link rel="stylesheet" href="/matches.css" />
+        <h2>{heading}</h2>
+        {matches.map((match: any) => <Match data={match}/>)}
     </section>
   );
 }

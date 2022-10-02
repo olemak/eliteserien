@@ -26,6 +26,7 @@ export default function OpenMatches({participantName, participantId, from, to}: 
                     closeIcon.ariaLabel = 'close';
                     closeIcon.title ='close';
                     closeIcon.tabIndex = 0;
+                    /* @ts-expect-error */
                     closeIcon.role = 'button';
                     closeIcon.innerHTML = '×';
                     closeIcon.addEventListener('click', () => {

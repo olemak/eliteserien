@@ -3,6 +3,7 @@ type supportedLanguages = "no" | "en";
 interface IStringsCollection {
     error: { generic: string; nameMissing: string;}
     table: any;   // TODO #3 - improve typing for table and participant strings
+    match: {plural: string, singular: string};
     participant: any;
 }
 type IStrings={
@@ -33,6 +34,10 @@ export const strings : IStrings = {
                 },
                 points: "Poeng",
             },
+        },
+        match: {
+            singular: "Kamp",
+            plural: "Kamper",
         },
         participant: {
             response: {
@@ -80,6 +85,10 @@ export const strings : IStrings = {
                 },
                 points: "Points",
             },
+        },
+        match: {
+            singular: "Match",
+            plural: "Matches",
         },
         participant: {
             response: {
