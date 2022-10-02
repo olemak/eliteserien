@@ -1,9 +1,10 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
+import { Head } from "https://deno.land/x/fresh@1.1.1/src/runtime/head.ts";
+
+
 import { apiRoot, defaultTournamentStageId } from "../constants/constants.ts";
 import { getTables } from "../queries/getTables.ts";
 import { strings } from "../constants/strings.ts";
-
-import { Head } from "https://deno.land/x/fresh@1.1.1/src/runtime/head.ts";
 import { TournamentTable } from "../components/TournamentTable.tsx";
 import { Fav } from "../components/FavIcon.tsx";
 
@@ -37,6 +38,9 @@ export default function Home({ data }: PageProps) {
             <Fav icon="⚽" />
         </Head>
         <TournamentTable data={data} />
+        <section id="modal" class="modal">
+            <div id="modal-inner" class="modal-inner" />
+        </section>
     </main>
   );
 }

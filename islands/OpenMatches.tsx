@@ -8,24 +8,37 @@ interface IOpenMatchesProps {
 }
 
 export default function OpenMatches({participantName, participantId, from, to}: IOpenMatchesProps) {
-
-    const [open, setOpen] = useState(false);
-
-    const openMatches = (event: Event) => { 
-        // event.preventDefault();
-        setOpen(!open);
-
-        /* TODO: Open a modal with matches that either :
-            Fetches data in the client, or
-            Fetches the rendered html from the server... :clever:
-        */
-
+    const href = `/matches/${participantId}?startDate=${from}&endDate=${to}`;
+    const openMatches = (event: Event) => {
+        event.preventDefault();
+        const modal = document.getElementById('modal');
+        const modalInner = modal?.firstChild as HTMLElement;
+        
+        if (modal) {
+            fetch(href)
+                .then(res => res.text())
+                .then(html => {
+                    modalInner.innerHTML = html;
+                    modal.ariaModal = "true";
+                    modal.classList.add('modal--open');
+                    const closeIcon = document.createElement('i');
+                    closeIcon.classList.add('close-icon');
+                    closeIcon.ariaLabel = 'close';
+                    closeIcon.title ='close';
+                    closeIcon.tabIndex = 0;
+                    closeIcon.role = 'button';
+                    closeIcon.innerHTML = '×';
+                    closeIcon.addEventListener('click', () => {
+                        modal.classList.remove('modal--open');
+                    });
+                    modal.appendChild(closeIcon);
+                })
+        }
     }
 
     return (
-    <a href={`/matches/${participantId}?startDate=${from}&endDate=${to}`}
-        onClick={openMatches}>
-        { participantName }
+        <a href={href} onClick={openMatches}>
+            { participantName }
         </a>
     )
 }
