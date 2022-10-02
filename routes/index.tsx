@@ -1,11 +1,13 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { apiRoot, defaultTournamentStageId } from "../constants/constants.ts";
-import Participant from "../islands/Participant.tsx";
 import { getTables } from "../queries/getTables.ts";
 import { strings } from "../constants/strings.ts";
 
 import { TableHead } from "../components/TableHead.tsx";
 import { Head } from "https://deno.land/x/fresh@1.1.1/src/runtime/head.ts";
+import { TableBody } from "../components/TableBody.tsx";
+
+// TODO: move the handler and the whole table to a component, cleaning up the index
 
 export const handler:Handlers = {
     async GET(_, ctx) {
@@ -27,12 +29,12 @@ export const handler:Handlers = {
 export default function Home({ data }: PageProps) {
   const locale = "no"; // TODO #1 opportunity: get locale from request
 
-
   if (!data) {
     return <div>{strings[locale].error.generic}</div>;
   }
 
-  const {name: tournamentName, standings, startDate, endDate} = data.tournamentStage;
+  const {name: tournamentName, id: tournamentStageId, standings, startDate, endDate} = data.tournamentStage;
+  const tournamentDate = new Date(startDate);
 
   return (
     <main class="main">
@@ -41,16 +43,13 @@ export default function Home({ data }: PageProps) {
             <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>"></link>
             <link rel="stylesheet" href="/table.css" />
         </Head>
-        <header><h1>{tournamentName}</h1></header>
         <table class="table">
+            <caption><h1>{`${tournamentName} ${tournamentDate.getFullYear()}`}</h1></caption>
             <TableHead locale={locale} />
-            <tbody>
-                {standings.map(
-                    (standing: any) => standing
-                        .participants
-                        .map((participantData: any) => <Participant data={participantData} id={data.id} startDate={startDate} endDate={endDate} />)
-                )}
-            </tbody>
+            <TableBody standings={standings}
+                startDate={startDate} 
+                endDate={endDate} 
+                tournamentStageId={tournamentStageId}/>
         </table>
     </main>
   );

@@ -1,4 +1,4 @@
-import { IParticipantMetric } from "../islands/Participant.tsx";
+import { IParticipantMetric } from "../components/Participant.tsx";
 
 function pluckMetricValue(metrics:IParticipantMetric[], code:string):number {
     const metric = metrics.find(metric => metric.code === code) ?? { value: "0" };

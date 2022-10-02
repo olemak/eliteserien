@@ -1,4 +1,5 @@
-import { strings } from "../constants/strings.ts";
+import OpenMatches from "../islands/OpenMatches.tsx";
+
 import { reduceParticipantMetrics } from "../logic/reduceParticipantMetrics.ts";
 
 export enum participantMetricCodesEnum {
@@ -19,6 +20,7 @@ interface IParticipantData {
 
 interface IParticipantProps {
     data: IParticipantData;
+    id: string;
     endDate: string;
     startDate: string;
 }
@@ -28,18 +30,27 @@ export default function Participant({ data, endDate, startDate }: IParticipantPr
     const { name, data: metrics } = data;
     const { name: participantName, id} = name;
     const reducedMetrics = reduceParticipantMetrics(metrics);
+ 
+
 
     return (
-        <tr scope="row" class="participant-row">
-            <th><a href={`/matches/${id}?startDate=${startDate}&endDate=${endDate}`}>{ participantName ?? strings[locale].error.nameMissing}</a></th>
-            <td>{ reducedMetrics.rank }</td>
-            <td>{ reducedMetrics.played }</td>
-            <td>{ reducedMetrics.wins }</td>
-            <td>{ reducedMetrics.draws }</td>
-            <td>{ reducedMetrics.defeats }</td>
-            <td>{ reducedMetrics.goalsfor }</td>
-            <td>{ reducedMetrics.goalsagainst }</td>
-            <td>{ reducedMetrics.points }</td>
-        </tr>
+            <tr
+                class="participant-row" >
+                <th  scope="row">
+                    <OpenMatches 
+                        participantName={participantName} 
+                        participantId={id}
+                        from={startDate}
+                        to={endDate}/>
+                </th>
+                <td>{ reducedMetrics.rank }</td>
+                <td>{ reducedMetrics.played }</td>
+                <td>{ reducedMetrics.wins }</td>
+                <td>{ reducedMetrics.draws }</td>
+                <td>{ reducedMetrics.defeats }</td>
+                <td>{ reducedMetrics.goalsfor }</td>
+                <td>{ reducedMetrics.goalsagainst }</td>
+                <td>{ reducedMetrics.points }</td>
+            </tr>
     );
 }

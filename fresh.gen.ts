@@ -7,7 +7,7 @@ import * as $0 from "./routes/api/matches.ts";
 import * as $1 from "./routes/api/tables.ts";
 import * as $2 from "./routes/index.tsx";
 import * as $3 from "./routes/matches/[id].tsx";
-import * as $$0 from "./islands/Participant.tsx";
+import * as $$0 from "./islands/OpenMatches.tsx";
 
 const manifest = {
   routes: {
@@ -17,7 +17,7 @@ const manifest = {
     "./routes/matches/[id].tsx": $3,
   },
   islands: {
-    "./islands/Participant.tsx": $$0,
+    "./islands/OpenMatches.tsx": $$0,
   },
   baseUrl: import.meta.url,
   config,
